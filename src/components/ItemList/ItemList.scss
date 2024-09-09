@@ -1,0 +1,19 @@
+.item-list {
+  background-color: #fff;
+  border: solid 1px #d3d3d3;
+  box-shadow: 0 0 5px 3px rgba(#000, 0.3);
+  padding: 8px;
+  min-width: 200px;
+  height: 100%;
+
+  .item {
+    border: solid 1px #000;
+    cursor: pointer;
+    padding: 8px;
+    margin-bottom: 8px;
+
+    &.selected {
+      background-color: rgba(#000, 0.6);
+    }
+  }
+}
