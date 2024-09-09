@@ -1,11 +1,13 @@
 .items-container {
-//   align-items: center;
   display: flex;
   gap: 16px;
   padding: 16px;
 
   .nav {
+    align-items: center;
     display: flex;
+    height: 100%;
     gap: 8px;
+    flex-grow: 0;
   }
 }

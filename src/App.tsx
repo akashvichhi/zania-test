@@ -15,8 +15,19 @@ function App() {
   const [movedItems, setMovedItems] = useState<Item[]>([]);
   const [selectedItems, setSelectedItems] = useState<Item[]>([]);
 
-  const onMoveRight = useCallback(() => {}, []);
-  const onMoveLeft = useCallback(() => {}, []);
+  const onMoveRight = useCallback(() => {
+    setMovedItems((prev) => [...prev, ...selectedItems]);
+    setItems((prev) => prev.filter((item) => !selectedItems.includes(item)));
+    setSelectedItems([]);
+  }, [selectedItems]);
+
+  const onMoveLeft = useCallback(() => {
+    setItems((prev) => [...prev, ...selectedItems]);
+    setMovedItems((prev) =>
+      prev.filter((item) => !selectedItems.includes(item))
+    );
+    setSelectedItems([]);
+  }, [selectedItems]);
 
   const onSelectItem = useCallback((item: Item) => {
     setSelectedItems((prev: Item[]) => {
@@ -34,9 +45,11 @@ function App() {
         selectedItems={selectedItems}
         onSelectItem={onSelectItem}
       />
-      <div className="nav">
-        <button onClick={onMoveLeft}>&lt;</button>
-        <button onClick={onMoveRight}>&gt;</button>
+      <div>
+        <div className="nav">
+          <button onClick={onMoveLeft}>&lt;</button>
+          <button onClick={onMoveRight}>&gt;</button>
+        </div>
       </div>
       <ItemList
         items={movedItems}
