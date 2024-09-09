@@ -16,13 +16,13 @@ function App() {
   const [selectedItems, setSelectedItems] = useState<Item[]>([]);
 
   const onMoveRight = useCallback(() => {
-    setMovedItems((prev) => [...prev, ...selectedItems]);
+    setMovedItems((prev) => Array.from(new Set([...prev, ...selectedItems])));
     setItems((prev) => prev.filter((item) => !selectedItems.includes(item)));
     setSelectedItems([]);
   }, [selectedItems]);
 
   const onMoveLeft = useCallback(() => {
-    setItems((prev) => [...prev, ...selectedItems]);
+    setItems((prev) => Array.from(new Set([...prev, ...selectedItems])));
     setMovedItems((prev) =>
       prev.filter((item) => !selectedItems.includes(item))
     );
